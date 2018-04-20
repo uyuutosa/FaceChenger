@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block body %}
+    {{ message }}
+    {% load static%}
+    <hr>
+
+    <!--
+    <form method="get" action="">
+        {{ form.errors.your_name }}
+	<label>{{ form.your_name.label }} {{ form.your_name }}</label><br>
+
+	{{ form.errors.gender }}
+	<label> {{ form.gender.label }} {{ form.gender }} </label><br>
+
+	{{ form.errors.memo }}
+	<label style="vertical-align:top;"> {{ form.memo.label }} {{ form.memo }}</label>
+
+    </form>
+    -->
+    <form method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	<table align='center' border=0 align=left>
+	<tr>
+	<td>
+	<p>
+        	<input type='file'   name='upload'>
+        	<input type='submit' name='transform' value='transform'>
+	</p>
+	</td>
+	</tr>
+    </form>
+
+    {{ form }}
+
+    {{ checkbox }}
+
+    <figure id='raw' style='text-align:center'>
+	    <img src="{{raw_image_path}}" style="max-height:500px"/>
+	<!--<img src="{% static "raw_image.png"%}?v={{query_for_frontal}}" style="max-height:500px"/>-->
+    <figcaption>Raw image</figcaption>
+    	</figure>
+
+    <figure id='cliped' style='text-align:center'>
+    	<img src="{% static "clip_image.png"%}?v={{query_for_frontal}}" style="max-height:500px"/>
+    	<figcaption>Cliped image</figcaption>
+    </figure>
+
+    <figure id='transformed' style='text-align:center'>
+    	<img src="{% static "transformed.png"%}?v={{query_for_frontal}}" style="max-height:500px"/>
+    	<figcaption>Cliped image</figcaption>
+    </figure>
+
+{% endblock %}
